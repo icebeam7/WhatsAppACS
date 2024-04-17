@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WhatsAppACS.Views.ChatView"
+             xmlns:vm="clr-namespace:WhatsAppACS.ViewModels"
+             x:DataType="vm:ChatViewModel"
+             Title="Chat">
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+              ColumnDefinitions="*,2*"
+              ColumnSpacing="5" RowSpacing="5" Margin="5">
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Text="Name: " 
+                   VerticalOptions="Center"/>
+
+            <Entry Grid.Row="0"
+                   Grid.Column="1"
+                   Text="{Binding Name}"/>
+
+            <Label Grid.Row="1" 
+                   Grid.Column="0"
+                   Text="Phone number: " 
+                   VerticalOptions="Center"/>
+
+            <Entry Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding PhoneNumber}"/>
+
+            <Button Grid.Row="2" 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="Start Conversation"
+                    HorizontalOptions="Center"
+                    Command="{Binding StartConversationCommand}"/>
+
+            <ActivityIndicator Grid.Row="3" 
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="True"
+                               Color="Orange"/>
+
+            <HorizontalStackLayout Grid.Row="4" 
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2">
+
+                <Label Text="Your message: " 
+                       VerticalOptions="Center"/>
+                
+                <Entry Text="{Binding Message}"
+                       WidthRequest="300"/>
+
+                <Label Text="File added" 
+                       IsVisible="False"/>
+                
+                <ImageButton Command="{Binding SelectFileCommand}"
+                             Source="attachment.png"
+                             WidthRequest="50"
+                             HeightRequest="50"/>
+
+                <ImageButton Command="{Binding SendMessageCommand}"
+                             Source="send.png"
+                             WidthRequest="50"
+                             HeightRequest="50"/>
+            </HorizontalStackLayout>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
